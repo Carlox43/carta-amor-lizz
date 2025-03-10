@@ -3,61 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Para mi amor!</title>
+    <title>💖 ¡Para ti! 💖</title>
     <style>
+      /* Estilos generales */
+      @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap");
+
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Poppins", sans-serif;
         text-align: center;
-        background-color: #ffe6e6;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        padding: 20px; /* Evita que el contenido se pegue a los bordes en móviles */
+        padding: 20px;
       }
 
       .container {
         background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        max-width: 90%; /* Se adapta a pantallas pequeñas */
-        width: 400px; /* Máximo ancho en pantallas grandes */
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        max-width: 90%;
+        width: 400px;
+        position: relative;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      /* Animación de entrada */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
 
       h1 {
-        color: #ff4d4d;
-        font-size: 1.8em; /* Se adapta en móviles */
+        font-family: "Pacifico", cursive;
+        color: #e60000;
+        font-size: 2em;
       }
 
       p {
-        font-size: 1.2em; /* Mejor lectura en móviles */
-        color: #333;
+        font-size: 1.2em;
+        color: #555;
+        margin: 15px 0;
       }
 
+      /* Botón animado */
       button {
-        background-color: #ff4d4d;
+        background: linear-gradient(90deg, #ff4d4d, #ff758c);
         color: white;
         border: none;
         padding: 12px 20px;
-        font-size: 1em;
-        border-radius: 5px;
+        font-size: 1.1em;
+        border-radius: 30px;
         cursor: pointer;
         transition: 0.3s;
-        margin-top: 10px;
-        width: 100%; /* Botón ocupa todo el ancho disponible */
-        max-width: 250px; /* No se hace demasiado grande en pantallas grandes */
+        margin-top: 15px;
+        width: 100%;
+        max-width: 250px;
+        box-shadow: 0 4px 10px rgba(255, 77, 77, 0.4);
+        font-weight: bold;
       }
 
       button:hover {
-        background-color: #e60000;
+        background: linear-gradient(90deg, #e60000, #ff4d4d);
+        box-shadow: 0 6px 15px rgba(255, 77, 77, 0.6);
+        transform: scale(1.05);
+      }
+
+      /* Efecto de corazones flotantes */
+      .heart {
+        position: absolute;
+        color: red;
+        font-size: 20px;
+        opacity: 0.7;
+        animation: float 3s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-30px);
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>💖 Mensajes para ti 💖</h1>
+      <h1>💖 Mensajes para Ti 💖</h1>
       <p id="mensaje">Haz clic en el botón para ver un mensaje especial. ✨</p>
       <button onclick="mostrarMensaje()">Ver Mensaje</button>
     </div>
@@ -79,6 +127,20 @@
         const mensajeAleatorio =
           mensajes[Math.floor(Math.random() * mensajes.length)];
         mensajeElemento.textContent = mensajeAleatorio;
+
+        // Generar corazones flotantes
+        for (let i = 0; i < 5; i++) {
+          let heart = document.createElement("div");
+          heart.classList.add("heart");
+          heart.innerHTML = "❤️";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.top = Math.random() * 100 + "vh";
+          heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+          document.body.appendChild(heart);
+
+          // Eliminar corazones después de la animación
+          setTimeout(() => heart.remove(), 3000);
+        }
       }
     </script>
   </body>
