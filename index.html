@@ -3,159 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Para Ti 💖</title>
+    <title>Para mi amor!</title>
     <style>
       body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #ffe6e6;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #ffe6e6;
-        font-family: Arial, sans-serif;
-        text-align: center;
+        padding: 20px; /* Evita que el contenido se pegue a los bordes en móviles */
       }
 
-      .heart {
-        width: 100px;
-        height: 100px;
-        background-color: red;
-        position: relative;
-        transform: rotate(-45deg);
-        margin-top: 20px;
-        animation: latir 1s infinite;
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 90%; /* Se adapta a pantallas pequeñas */
+        width: 400px; /* Máximo ancho en pantallas grandes */
+      }
+
+      h1 {
+        color: #ff4d4d;
+        font-size: 1.8em; /* Se adapta en móviles */
+      }
+
+      p {
+        font-size: 1.2em; /* Mejor lectura en móviles */
+        color: #333;
+      }
+
+      button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1em;
+        border-radius: 5px;
         cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+        width: 100%; /* Botón ocupa todo el ancho disponible */
+        max-width: 250px; /* No se hace demasiado grande en pantallas grandes */
       }
 
-      .heart::before,
-      .heart::after {
-        content: "";
-        width: 100px;
-        height: 100px;
-        background-color: red;
-        border-radius: 50%;
-        position: absolute;
-      }
-
-      .heart::before {
-        top: -50px;
-        left: 0;
-      }
-
-      .heart::after {
-        left: 50px;
-        top: 0;
-      }
-
-      @keyframes latir {
-        0%,
-        100% {
-          transform: scale(1) rotate(-45deg);
-        }
-        50% {
-          transform: scale(1.2) rotate(-45deg);
-        }
-      }
-
-      .mensaje {
-        margin-top: 20px;
-        font-size: 20px;
-        color: #d60000;
-        font-weight: bold;
-        display: none;
+      button:hover {
+        background-color: #e60000;
       }
     </style>
   </head>
   <body>
-    <h2>Haz clic en el corazón 💖</h2>
-    <div class="heart" onclick="mostrarMensaje()"></div>
-    <p class="mensaje" id="mensaje">Eres lo mejor que me ha pasado ❤️</p>
+    <div class="container">
+      <h1>💖 Mensajes para ti 💖</h1>
+      <p id="mensaje">Haz clic en el botón para ver un mensaje especial. ✨</p>
+      <button onclick="mostrarMensaje()">Ver Mensaje</button>
+    </div>
 
     <script>
+      const mensajes = [
+        "Eres lo mejor que me ha pasado. ❤️",
+        "Cada día a tu lado es un regalo. 🎁",
+        "Tu sonrisa ilumina mi mundo. ☀️",
+        "Te amo más de lo que las palabras pueden expresar. 💕",
+        "Eres mi felicidad, mi amor eterno. 💖",
+        "Gracias por hacer mi vida más hermosa. 🌹",
+        "No necesito nada más cuando estoy contigo. 🥰",
+        "Eres mi persona favorita en el mundo. 🌍",
+      ];
+
       function mostrarMensaje() {
-        const mensaje = document.getElementById("mensaje");
-        mensaje.style.display = "block";
-      }
-    </script>
-  </body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Para Ti 💖</title>
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #ffe6e6;
-        font-family: Arial, sans-serif;
-        text-align: center;
-      }
-
-      .heart {
-        width: 100px;
-        height: 100px;
-        background-color: red;
-        position: relative;
-        transform: rotate(-45deg);
-        margin-top: 20px;
-        animation: latir 1s infinite;
-        cursor: pointer;
-      }
-
-      .heart::before,
-      .heart::after {
-        content: "";
-        width: 100px;
-        height: 100px;
-        background-color: red;
-        border-radius: 50%;
-        position: absolute;
-      }
-
-      .heart::before {
-        top: -50px;
-        left: 0;
-      }
-
-      .heart::after {
-        left: 50px;
-        top: 0;
-      }
-
-      @keyframes latir {
-        0%,
-        100% {
-          transform: scale(1) rotate(-45deg);
-        }
-        50% {
-          transform: scale(1.2) rotate(-45deg);
-        }
-      }
-
-      .mensaje {
-        margin-top: 20px;
-        font-size: 20px;
-        color: #d60000;
-        font-weight: bold;
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>Haz clic en el corazón 💖</h2>
-    <div class="heart" onclick="mostrarMensaje()"></div>
-    <p class="mensaje" id="mensaje">Eres lo mejor que me ha pasado ❤️</p>
-
-    <script>
-      function mostrarMensaje() {
-        const mensaje = document.getElementById("mensaje");
-        mensaje.style.display = "block";
+        const mensajeElemento = document.getElementById("mensaje");
+        const mensajeAleatorio =
+          mensajes[Math.floor(Math.random() * mensajes.length)];
+        mensajeElemento.textContent = mensajeAleatorio;
       }
     </script>
   </body>
